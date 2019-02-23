@@ -1,0 +1,7 @@
+{{> header }}
+    <h1>Blog Archive</h1>
+    {{#each posts}}
+        <h2><a href="/blog/{{ this.postName }}">{{ this.title }}</a><h2>
+    {{/each}}
+    <p><a href="/"><- home</a></p>
+{{> footer }}
