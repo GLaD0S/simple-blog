@@ -20,6 +20,18 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/blog', async (req, res) => {
+    try {
+        let postFiles = await blog.getPosts();
+        postFiles = await blog.postSort(postFiles, "publishDate", "desc");
+        res.render('blog', {
+            posts: postFiles
+        });
+    } catch {
+        res.redirect("/");
+    }
+});
+
 app.get('/blog/:postName', async (req, res) => {
     let data = undefined;
     let postName = req.params.postName;
@@ -31,18 +43,6 @@ app.get('/blog/:postName', async (req, res) => {
                 content: marked(data)
             }
         );
-    } catch {
-        res.redirect("/");
-    }
-});
-
-app.get('/blog', async (req, res) => {
-    try {
-        let postFiles = await blog.getPosts();
-        postFiles = await blog.postSort(postFiles, "publishDate", "desc");
-        res.render('blog', {
-            posts: postFiles
-        });
     } catch {
         res.redirect("/");
     }
