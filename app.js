@@ -10,15 +10,6 @@ const hbs = require('hbs');
 const app = express();
 const port = 3000;
 
-let dates = [
-    { date: new Date("2015-03-25")},
-    { date: new Date("2015-03-27")},
-    { date: new Date("2015-03-24")},
-    { date: new Date("2015-03-28")},
-    { date: new Date("2015-03-23")},
-    { date: new Date("2015-03-22")}
-];
-
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 
